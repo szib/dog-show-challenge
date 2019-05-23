@@ -21,7 +21,8 @@ const patchDog = (newDog) => {
     },
     body: JSON.stringify(newDog),
   };
-  return api(dogForm.action, options);
+  return api(dogForm.action, options)
+    .catch(err => alert('API error: cannot update dogs'));
 };
 
 const enableForm = () => {
@@ -104,5 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
   disableForm();
   api(URL)
     .then(saveDogs)
-    .then(renderDogs);
+    .then(renderDogs)
+    .catch(err => alert('API error: cannot fetch dog'));
 });
